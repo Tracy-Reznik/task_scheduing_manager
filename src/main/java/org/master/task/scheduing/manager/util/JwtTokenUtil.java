@@ -90,4 +90,8 @@ public class JwtTokenUtil {
         InvalidateToken invalidateToken = new InvalidateToken(token, expiration);
         invalidateTokenRepository.save(invalidateToken);
     }
+
+    public Claims getClaims(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    }
 }
